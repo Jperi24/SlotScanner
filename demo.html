@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Slot Demo - BitStarz</title>
+  <script src="./scripts/slot.js" defer></script>
+  <script defer>
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const slotName = params.get("slot");
+      const slot = window.slots.find(s => s.name === slotName);
+      const container = document.getElementById("iframe-container");
+
+      if (slot) {
+        document.getElementById("slot-title").textContent = slot.name;
+        container.innerHTML = `
+          <div class="iframe-wrapper">
+            <iframe src="${slot.iframe}" width="100%" height="700" frameborder="0" allowfullscreen></iframe>
+          </div>
+        `;
+      } else {
+        container.innerHTML = `<p class="error-message">⚠️ Slot not found.</p>`;
+      }
+    });
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0e27;
+      min-height: 100vh;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(72, 219, 251, 0.2) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffd700;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+    }
+
+    .back-button:hover {
+      background: rgba(255, 215, 0, 0.2);
+      border-color: rgba(255, 215, 0, 0.5);
+      transform: translateX(-5px);
+      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .slot-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    #slot-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 25%, #ff6b6b 50%, #ff8e53 75%, #ffd700 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 300;
+    }
+
+    #iframe-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 700px;
+    }
+
+    .iframe-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 100px rgba(255, 215, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .iframe-wrapper:hover {
+      border-color: rgba(255, 215, 0, 0.3);
+      box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 120px rgba(255, 215, 0, 0.2);
+    }
+
+    iframe {
+      border-radius: 16px;
+      width: 100%;
+      height: 700px;
+      border: none;
+      display: block;
+    }
+
+    .error-message {
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 60px;
+      background: rgba(255, 107, 107, 0.1);
+      border: 1px solid rgba(255, 107, 107, 0.3);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+    }
+
+    .demo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#iframe-container {
+    flex: 4;               /* Makes iframe much bigger */
+    min-width: 600px;      /* Optional minimum width */
+}
+
+#iframe-container iframe {
+    width: 100%;
+    height: 80vh;          /* Almost full viewport height */
+    border-radius: 12px;
+}
+
+#widget-container img {
+    width: 100%;        /* Make it fit the container width */
+    max-width: 300px;   /* Limit the width */
+    height: auto;       /* Keep aspect ratio */
+    object-fit: contain; /* Avoid distortion */
+}
+
+
+
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 10px;
+      }
+
+      #slot-title {
+        font-size: 2rem;
+      }
+
+      iframe {
+        height: 500px;
+      }
+
+      #iframe-container {
+        min-height: 500px;
+      }
+
+      .iframe-wrapper {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  
+  <div class="container">
+    <a href="index.html" class="back-button">
+      ⬅ Back to Slots
+    </a>
+
+    <div class="slot-header">
+      <h1 id="slot-title">Loading Slot...</h1>
+      <p class="subtitle">Premium Gaming Experience</p>
+    </div>
+    <div class="demo-wrapper">
+      <div id="iframe-container">
+          <iframe src="demo.html" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div id="widget-container">
+          <script type="text/javascript" src="https://bzstarz.com/sources/be2fc0caf.js"></script>
+      </div>
+  </div>
+  
+  
+  </div>
+
+  <script>
+    // Create animated stars to match index.html
+    function createStars() {
+      const starsContainer = document.getElementById('stars');
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.opacity = Math.random() * 0.5 + 0.3;
+        starsContainer.appendChild(star);
+      }
+    }
+    createStars();
+  </script>
+</body>
+</html>

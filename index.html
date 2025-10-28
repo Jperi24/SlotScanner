@@ -340,7 +340,7 @@
         .toc-section {
             max-width: 600px;
             margin: 0 auto 40px;
-            padding: 15px 20px;
+            padding: 5px 20px;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border-radius: 20px;
@@ -866,6 +866,87 @@
         .slot-image.loaded {
             filter: blur(0);
         }
+
+        .button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.demo-button {
+    display: block;
+    width: 100%;
+    padding: 18px 32px;
+    background: linear-gradient(135deg, #0fa, #0c6); /* Green gradient */
+    color: #000; /* Dark text for contrast */
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 800;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 10px 40px rgba(0, 255, 128, 0.4); /* Green glow */
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.demo-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.demo-button:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.demo-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 50px rgba(0, 255, 128, 0.6);
+}
+
+.demo-button span {
+    position: relative;
+    z-index: 1;
+}
+/* Wrap nav + widget in a flex container */
+.nav-widget-wrapper {
+    display: flex;
+    align-items: flex-start; /* Align top of nav and widget */
+    gap: 0; /* Space between nav and widget */
+    margin-bottom: 40px;
+}
+
+/* Make the nav take its natural width */
+.nav-widget-wrapper nav.toc-section {
+    flex: 1; /* Can adjust if you want it bigger or smaller */
+}
+
+/* Make the widget smaller and right-aligned */
+#widget-container {
+    flex: 0 0 180px; /* fixed width for widget */
+}
+
+/* Optional: make the script image thinner */
+#widget-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+
+
     </style>
 </head>
 <body>
@@ -880,16 +961,21 @@
             <p class="last-updated">Last Updated: <time id="current-date" datetime=""></time></p>
         </header>
 
-        <nav class="toc-section" role="navigation" aria-label="Table of contents">
-            <h2>Quick Navigation</h2>
-            <ul class="toc-list">
-                <li><a href="#stats">Quick Stats</a></li>
-                <li><a href="#why-rtp">Why RTP Matters</a></li>
-            
-                <li><a href="#comparison">Comparison Table</a></li>
-                <li><a href="#faq">FAQs</a></li>
-            </ul>
-        </nav>
+        <div class="nav-widget-wrapper">
+            <nav class="toc-section" role="navigation" aria-label="Table of contents">
+                <h2>Quick Navigation</h2>
+                <ul class="toc-list">
+                    <li><a href="#stats">Quick Stats</a></li>
+                    <li><a href="#why-rtp">Why RTP Matters</a></li>
+                    <li><a href="#comparison">Comparison Table</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                </ul>
+            </nav>
+            <div id="widget-container">
+                <script type="text/javascript" src="https://bzstarz.com/sources/be2fc0caf.js"></script>
+            </div>
+        </div>
+        
 
         <section id="stats" class="quick-stats" aria-label="Quick statistics">
             <div class="stat-card">
@@ -1118,8 +1204,11 @@
                         </div>
                         <p class="slot-description" itemprop="description">${description}</p>
                         <a href="${url}" target="_blank" rel="noopener noreferrer" class="play-button" aria-label="Play ${title} now">
-                            <span>Play Now ⚡</span>
+                            <span>Play Live ⚡</span>
                         </a>
+                        <a href="demo.html?slot=${encodeURIComponent(title)}" class="demo-button" aria-label="Play ${title} demo">
+    <span>🎮 Demo</span>
+  </a>
                     </div>
                 `;
                 
