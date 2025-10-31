@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Highest RTP Slots | Casino Slots</title>
+    <meta name="description" content="Discover the top 10 highest RTP slots with the best return to player percentages.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎰</text></svg>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0e27;
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(72, 219, 251, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 12px 24px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 25%, #ff6b6b 50%, #ff8e53 75%, #ffd700 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .quick-stats {
+            max-width: 1200px;
+            margin: 40px auto 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 40px;
+            padding: 20px;
+            margin-bottom: 80px;
+        }
+
+        .slot-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .slot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .slot-card:hover::before {
+            opacity: 1;
+        }
+
+        .slot-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .rank-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #1a1a2e;
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.6);
+            z-index: 2;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .slot-image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 60%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .slot-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s ease;
+            filter: brightness(0.9);
+        }
+
+        .slot-card:hover .slot-image {
+            transform: scale(1.15) rotate(2deg);
+            filter: brightness(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+            pointer-events: none;
+        }
+
+        .rtp-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #00f5ff 0%, #0066ff 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 32px rgba(0, 102, 255, 0.5);
+            z-index: 2;
+            letter-spacing: 1px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .slot-content {
+            padding: 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slot-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .slot-provider {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .slot-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .play-button {
+            display: block;
+            width: 100%;
+            padding: 18px 32px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .play-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .play-button:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .play-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.6);
+        }
+
+        .play-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .demo-button {
+            display: block;
+            width: 100%;
+            padding: 18px 32px;
+            background: linear-gradient(135deg, #0fa, #0c6);
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 40px rgba(0, 255, 128, 0.4);
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0, 255, 128, 0.6);
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+            padding: 100px;
+        }
+
+        .error {
+            text-align: center;
+            color: white;
+            background: rgba(255, 107, 107, 0.2);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px auto;
+            max-width: 600px;
+            font-size: 1.1rem;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .slots-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <a href="index.html" class="back-button">
+            ← Back to Casinos
+        </a>
+
+        <header>
+            <h1 class="floating" id="casino-title">🎰 Top 10 Highest RTP Slots</h1>
+            <p class="subtitle" id="casino-subtitle">Premium Slot Games</p>
+        </header>
+
+        <section class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="avg-rtp">--</div>
+                <div class="stat-label">Average RTP</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="highest-rtp">--</div>
+                <div class="stat-label">Highest RTP</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-slots">10</div>
+                <div class="stat-label">Top Slots</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="providers-count">--</div>
+                <div class="stat-label">Providers</div>
+            </div>
+        </section>
+
+        <div id="loading" class="loading">✨ Loading slots...</div>
+        <div id="error" class="error" style="display: none;"></div>
+        <section id="slots-grid" class="slots-grid"></section>
+    </div>
+
+    <script>
+        // Create animated stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.opacity = Math.random() * 0.5 + 0.3;
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+
+        // Get casino from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const casinoName = urlParams.get('casino') || 'bitstarz';
+
+        // Casino configuration
+        const casinoConfig = {
+            'bitstarz': {
+                name: 'BitStarz',
+                csvFile: 'bitstarz-slots.csv',
+                url: 'https://bzstarz.com/be2fc0caf'
+            },
+            'El Royale': {
+                name: 'El Royale',
+                csvFile: 'El Royale-slots.csv',
+                url: 'https://record.toponepartners.com/_76vnukNa584nh5ZBCMDNQmNd7ZgqdRLk/1/'
+            },
+            'Los Atlantis': {
+                name: 'Los Atlantis',
+                csvFile: 'Los Atlantis.csv',
+                url: 'https://record.toponepartners.com/_76vnukNa586WtMSeYWgD_WNd7ZgqdRLk/1/'
+            },
+            'Red Dog': {
+                name: 'Red Dog',
+                csvFile: 'Red Dog.csv',
+                url: 'https://record.toponepartners.com/_76vnukNa58600xBPaxe9dWNd7ZgqdRLk/1/'
+            },
+            'Slot Empire': {
+                name: 'Slot Empire',
+                csvFile: 'Slot Empire.csv',
+                url: 'https://record.toponepartners.com/_76vnukNa584oR2KuWOw_0GNd7ZgqdRLk/1/'
+            },
+            'luckyblock': {
+                name: 'LuckyBlock Casino',
+                csvFile: 'luckyblock-slots.csv',
+                url: 'https://luckyblock.com'
+            }
+        };
+
+        const config = casinoConfig[casinoName];
+        
+        // Fallback to bitstarz if config not found
+        if (!config) {
+            window.location.href = 'casino-slots.html?casino=bitstarz';
+        }
+        
+        // Update page title
+        document.getElementById('casino-title').textContent = `🎰 Top 10 Highest RTP Slots at ${config.name}`;
+        document.getElementById('casino-subtitle').textContent = `Best Paying Games at ${config.name}`;
+        document.title = `Top 10 Highest RTP Slots | ${config.name}`;
+
+        function updateQuickStats(slots) {
+            const rtps = slots.map(s => parseFloat(s.rtp)).filter(r => !isNaN(r));
+            const avgRtp = (rtps.reduce((a, b) => a + b, 0) / rtps.length).toFixed(1);
+            const highestRtp = Math.max(...rtps).toFixed(1);
+            const providers = new Set(slots.map(s => s.provider).filter(p => p));
+            
+            document.getElementById('avg-rtp').textContent = avgRtp + '%';
+            document.getElementById('highest-rtp').textContent = highestRtp + '%';
+            document.getElementById('providers-count').textContent = providers.size;
+        }
+
+        function displaySlots(slots) {
+            const grid = document.getElementById('slots-grid');
+            const loading = document.getElementById('loading');
+            
+            loading.style.display = 'none';
+            updateQuickStats(slots);
+
+            slots.forEach((slot, index) => {
+                const card = document.createElement('article');
+                card.className = 'slot-card';
+                
+                const title = slot.title || slot.name || 'Untitled Slot';
+                const provider = slot.provider || 'Unknown Provider';
+                const rtp = slot.rtp ? parseFloat(slot.rtp).toFixed(1) : 'N/A';
+                const url = config.url;
+                const image = slot.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%231a1a2e" width="400" height="300"/%3E%3C/svg%3E';
+                const description = slot.description || 'Experience premium slot gaming with exceptional features and rewards.';
+
+                card.innerHTML = `
+                    <div class="rank-badge">#${index + 1}</div>
+                    <a href="${url}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+                        <div class="slot-image-wrapper">
+                            <img src="${image}" alt="${title}" class="slot-image" loading="lazy">
+                            <div class="image-overlay"></div>
+                            <div class="rtp-badge">RTP ${rtp}%</div>
+                        </div>
+                    </a>
+                    <div class="slot-content">
+                        <h2 class="slot-title">${title}</h2>
+                        <div class="slot-provider">${provider}</div>
+                        <p class="slot-description">${description}</p>
+                        <a href="${url}" target="_blank" rel="noopener noreferrer" class="play-button">
+                            <span>Play Now ⚡</span>
+                        </a>
+                        <a href="demo.html?slot=${encodeURIComponent(title)}" class="demo-button">
+                            <span>🎮 Demo</span>
+                        </a>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        function showError(message) {
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            
+            loading.style.display = 'none';
+            error.style.display = 'block';
+            error.textContent = message;
+        }
+
+        // Load casino-specific CSV
+        Papa.parse(config.csvFile, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                if (results.errors.length > 0) {
+                    console.error('Parse errors:', results.errors);
+                }
+                
+                if (!results.data || results.data.length === 0) {
+                    showError(`No data found for ${config.name}. Using fallback data.`);
+                    // Fallback to Top10.csv if casino-specific file not found
+                    loadFallbackData();
+                    return;
+                }
+
+                const validSlots = results.data
+                    .filter(slot => slot.rtp && !isNaN(parseFloat(slot.rtp)))
+                    .sort((a, b) => parseFloat(b.rtp) - parseFloat(a.rtp))
+                    .slice(0, 10);
+
+                if (validSlots.length === 0) {
+                    showError('No slots with valid RTP found');
+                    return;
+                }
+
+                displaySlots(validSlots);
+            },
+            error: function(error) {
+                console.error('Error loading CSV:', error);
+                loadFallbackData();
+            }
+        });
+
+        // Fallback to Top10.csv if casino-specific file doesn't exist
+        function loadFallbackData() {
+            Papa.parse('Top10.csv', {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    if (results.data && results.data.length > 0) {
+                        const validSlots = results.data
+                            .filter(slot => slot.rtp && !isNaN(parseFloat(slot.rtp)))
+                            .sort((a, b) => parseFloat(b.rtp) - parseFloat(a.rtp))
+                            .slice(0, 10);
+                        
+                        if (validSlots.length > 0) {
+                            displaySlots(validSlots);
+                        }
+                    }
+                },
+                error: function(error) {
+                    showError('Error loading slot data: ' + error.message);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
