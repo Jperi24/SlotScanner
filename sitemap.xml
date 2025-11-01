@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://yourwebsite.com/</loc>
+        <lastmod>2025-11-01</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Main Index Page -->
+    <url>
+        <loc>https://yourwebsite.com/index.html</loc>
+        <lastmod>2025-11-01</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Casino Slots Pages -->
+    <url>
+        <loc>https://yourwebsite.com/casino-slots.html</loc>
+        <lastmod>2025-11-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://yourwebsite.com/casino-slots.html?casino=bitstarz</loc>
+        <lastmod>2025-11-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://yourwebsite.com/casino-slots.html?casino=Los%20Atlantis</loc>
+        <lastmod>2025-11-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://yourwebsite.com/casino-slots.html?casino=El%20Royale</loc>
+        <lastmod>2025-11-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://yourwebsite.com/casino-slots.html?casino=Red%20Dog</loc>
+        <lastmod>2025-11-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://yourwebsite.com/casino-slots.html?casino=Slot%20Empire</loc>
+        <lastmod>2025-11-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Demo Page -->
+    <url>
+        <loc>https://yourwebsite.com/demo.html</loc>
+        <lastmod>2025-11-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+</urlset>
+
