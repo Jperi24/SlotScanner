@@ -1,4 +1,4 @@
-# robots.txt for SlotScanner
+# robots.txt for Slotedge
 # Last updated: November 1, 2025
 
 User-agent: *
