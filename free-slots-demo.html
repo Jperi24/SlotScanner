@@ -25,7 +25,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0a0e27; color: #fff; line-height: 1.8; }
+        body { font-family: 'Inter', sans-serif; background: #0a0e27; color: #fff; line-height: 1.8; padding-top: 70px; }
         body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(255, 107, 107, 0.3) 0%, transparent 50%); pointer-events: none; z-index: 0; }
         .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 1; }
         header { text-align: center; padding: 60px 20px 40px; }
@@ -38,6 +38,7 @@
         .slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 60px; }
         .slot-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
         .slot-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3); border-color: rgba(255, 215, 0, 0.5); }
+        .slot-image { width: 100%; height: 200px; object-fit: cover; display: block; }
         .slot-header { background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 107, 107, 0.15) 100%); padding: 20px; text-align: center; }
         .slot-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
         .rtp { display: inline-block; background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%); color: #1a1a2e; padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 800; }
@@ -50,10 +51,38 @@
         .filter-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 30px 0; }
         .filter-btn { padding: 12px 28px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 50px; color: #fff; cursor: pointer; transition: all 0.3s; font-weight: 600; }
         .filter-btn:hover, .filter-btn.active { background: rgba(255, 215, 0, 0.2); border-color: rgba(255, 215, 0, 0.6); }
-        @media (max-width: 768px) { .slots-grid { grid-template-columns: 1fr; } h1 { font-size: 2.2rem; } }
+        
+        /* Navigation Bar Styles */
+        nav a:hover { color: #ffd700 !important; transform: translateY(-2px); }
+        
+        @media (max-width: 768px) { 
+            .slots-grid { grid-template-columns: 1fr; } 
+            h1 { font-size: 2.2rem; }
+            nav > div { flex-direction: column; gap: 15px; }
+            nav > div > div { gap: 20px; }
+            body { padding-top: 120px; }
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 14, 39, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 215, 0, 0.2); padding: 15px 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" style="font-size: 1.5rem; font-weight: 900; text-decoration: none; color: #ffd700;">
+                🎰 SlotScanner
+            </a>
+            <div style="display: flex; gap: 30px; align-items: center;">
+                <a href="index.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; transition: all 0.3s;">Home</a>
+                <a href="free-slots-demo.html" style="color: #ffd700; text-decoration: none; font-weight: 600; transition: all 0.3s; display: flex; align-items: center; gap: 8px;">
+                    🎮 Free Slots Demo
+                </a>
+                <a href="blog.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; transition: all 0.3s;">
+                    📚 Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+    
     <div class="container">
         <header>
             <h1>🎰 Play 37+ Free Slot Demos</h1>
@@ -104,6 +133,7 @@
         function renderSlots(slotsToRender = window.slots) {
             slotsGrid.innerHTML = slotsToRender.map(slot => `
                 <article class="slot-card">
+                    ${slot.image ? `<img src="${slot.image}" alt="${slot.name}" class="slot-image" loading="lazy" onerror="this.style.display='none'">` : ''}
                     <div class="slot-header">
                         <h2 class="slot-name">${slot.name}</h2>
                         <span class="rtp">${slot.rtp} RTP</span>
@@ -117,38 +147,49 @@
             `).join('');
         }
 
-        // Search functionality
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            const filtered = window.slots.filter(slot => 
-                slot.name.toLowerCase().includes(query)
-            );
-            renderSlots(filtered);
-        });
-
-        // Filter functionality
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const filter = btn.dataset.filter;
-                let filtered = window.slots;
-                
-                if (filter === 'high') {
-                    filtered = window.slots.filter(s => parseFloat(s.rtp) >= 97);
-                } else if (filter === 'popular') {
-                    filtered = window.slots.slice(0, 12);
-                } else if (filter === 'new') {
-                    filtered = window.slots.slice(-12);
-                }
-                
+        // Initial render - wait for slots data to load
+        function init() {
+            if (window.slots && window.slots.length > 0) {
+                renderSlots();
+                setupEventListeners();
+            } else {
+                setTimeout(init, 50);
+            }
+        }
+        
+        function setupEventListeners() {
+            // Search functionality
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                const filtered = window.slots.filter(slot => 
+                    slot.name.toLowerCase().includes(query)
+                );
                 renderSlots(filtered);
             });
-        });
 
-        // Initial render
-        renderSlots();
+            // Filter functionality
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const filter = btn.dataset.filter;
+                    let filtered = window.slots;
+                    
+                    if (filter === 'high') {
+                        filtered = window.slots.filter(s => parseFloat(s.rtp) >= 97);
+                    } else if (filter === 'popular') {
+                        filtered = window.slots.slice(0, 12);
+                    } else if (filter === 'new') {
+                        filtered = window.slots.slice(-12);
+                    }
+                    
+                    renderSlots(filtered);
+                });
+            });
+        }
+        
+        init();
     </script>
 </body>
 </html>

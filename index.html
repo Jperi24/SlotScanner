@@ -201,6 +201,7 @@
             color: #fff;
             overflow-x: hidden;
             position: relative;
+            padding-top: 70px;
         }
 
         body::before {
@@ -528,9 +529,46 @@
         .floating {
             animation: float 6s ease-in-out infinite;
         }
+
+        /* Navigation Bar Styles */
+        nav a:hover {
+            color: #ffd700 !important;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            nav > div {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav > div > div {
+                gap: 20px;
+            }
+            body {
+                padding-top: 120px;
+            }
+        }
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
+    <!-- Navigation Bar -->
+    <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 14, 39, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 215, 0, 0.2); padding: 15px 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" style="font-size: 1.5rem; font-weight: 900; text-decoration: none; color: #ffd700;">
+                🎰 SlotScanner
+            </a>
+            <div style="display: flex; gap: 30px; align-items: center;">
+                <a href="index.html" style="color: #ffd700; text-decoration: none; font-weight: 600; transition: all 0.3s;">Home</a>
+                <a href="free-slots-demo.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; transition: all 0.3s; display: flex; align-items: center; gap: 8px;">
+                    🎮 Free Slots Demo
+                </a>
+                <a href="blog.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; transition: all 0.3s;">
+                    📚 Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+    
     <div class="stars" id="stars" aria-hidden="true"></div>
     
     <!-- Skip to main content for accessibility -->
