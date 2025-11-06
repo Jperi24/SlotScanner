@@ -142,7 +142,7 @@ Your SlotScanner website has been **significantly enhanced** with comprehensive 
 
 ### 1️⃣ Update Domain URLs (5 minutes)
 **Find & Replace in ALL files:**
-- Find: `https://yourwebsite.com`
+- Find: `https://slotedge.bet`
 - Replace: `https://your-actual-domain.com`
 
 **Files to update:**

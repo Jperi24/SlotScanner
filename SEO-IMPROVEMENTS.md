@@ -328,7 +328,7 @@ This document outlines all the comprehensive SEO improvements made to the SlotSc
 ## 🚀 Next Steps & Recommendations
 
 ### Immediate Actions Needed:
-1. **Update URLs**: Replace "https://yourwebsite.com" with your actual domain in:
+1. **Update URLs**: Replace "https://slotedge.bet" with your actual domain in:
    - All HTML files (canonical links, OG tags)
    - robots.txt
    - sitemap.xml

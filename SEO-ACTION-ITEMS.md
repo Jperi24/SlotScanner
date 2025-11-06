@@ -3,7 +3,7 @@
 ## 🔴 CRITICAL - Do These FIRST (Required for SEO to work)
 
 ### 1. Update Your Domain URLs
-**Current**: All files use placeholder "https://yourwebsite.com"  
+**Current**: All files use placeholder "https://slotedge.bet"  
 **Action**: Replace with your actual domain in these files:
 
 - [ ] `index.html` - Lines 16, 20, 23, 63-89, 92-150
@@ -13,7 +13,7 @@
 - [ ] `sitemap.xml` - All <loc> tags
 
 **Find & Replace**: 
-- Find: `https://yourwebsite.com`
+- Find: `https://slotedge.bet`
 - Replace: `https://your-actual-domain.com`
 
 ---
