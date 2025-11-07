@@ -4,293 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News - SlotEdge.bet</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎰</text></svg>">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0a0e27;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 20px;
             min-height: 100vh;
-            color: #fff;
-            overflow-x: hidden;
-            position: relative;
-            padding-top: 70px;
         }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(72, 219, 251, 0.2) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
         }
-
         header {
             text-align: center;
-            padding: 60px 20px 40px;
-            position: relative;
+            color: white;
+            margin-bottom: 60px;
         }
-
         h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 25%, #ff6b6b 50%, #ff8e53 75%, #ffd700 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s linear infinite;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
+            font-size: 4em;
+            margin-bottom: 15px;
         }
-
-        @keyframes shimmer {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
         .subtitle {
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.7);
-            font-weight: 300;
-            letter-spacing: 1px;
+            font-size: 1.3em;
+            opacity: 0.9;
         }
-
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            gap: 30px;
         }
-
         .category-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            background: white;
             padding: 40px 30px;
+            border-radius: 16px;
             text-align: center;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 6px solid;
         }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .category-card:hover::before {
-            opacity: 1;
-        }
-
         .category-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 
-                0 30px 60px rgba(0, 0, 0, 0.5),
-                0 0 100px rgba(255, 215, 0, 0.3);
-            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
-
         .category-icon {
             font-size: 4em;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 15px;
         }
-
         .category-title {
             font-size: 1.8em;
             margin-bottom: 10px;
-            color: #ffffff;
-            font-weight: 800;
-            position: relative;
-            z-index: 2;
+            color: #222;
         }
-
         .category-count {
-            color: rgba(255, 255, 255, 0.6);
+            color: #666;
             font-size: 1.1em;
-            position: relative;
-            z-index: 2;
-        }
-
-        .border-accent {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 6px;
-            height: 100%;
-            z-index: 2;
-        }
-
-        /* Navigation Bar Styles */
-        nav a:hover {
-            color: #ffd700 !important;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .categories-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            nav > div {
-                flex-direction: column;
-                gap: 15px;
-            }
-            nav > div > div {
-                gap: 20px;
-            }
-            body {
-                padding-top: 120px;
-            }
-        }
-
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 14, 39, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 215, 0, 0.2); padding: 15px 0;">
-        <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;">
-            <a href="../index.html" style="font-size: 1.5rem; font-weight: 900; text-decoration: none; color: #ffd700;">
-                🎰 Slotedge
-            </a>
-            <div style="display: flex; gap: 30px; align-items: center;">
-                <a href="../index.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; transition: all 0.3s;">Home</a>
-                <a href="../free-slots-demo.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; transition: all 0.3s; display: flex; align-items: center; gap: 8px;">
-                    🎮 Free Slots Demo
-                </a>
-                <a href="../blog.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; transition: all 0.3s;">
-                    📚 Blog
-                </a>
-                <a href="index.html" style="color: #ffd700; text-decoration: none; font-weight: 600; transition: all 0.3s;">
-                    📰 News
-                </a>
-            </div>
-        </div>
-    </nav>
-    
-    <div class="stars" id="stars" aria-hidden="true"></div>
-    
     <div class="container">
         <header>
-            <h1 class="floating">📰 Betting Industry News</h1>
-            <p class="subtitle">AI-Generated Daily Analysis & Insights</p>
+            <h1>📰 News</h1>
+            <p class="subtitle">AI-Generated Betting Industry Analysis</p>
         </header>
         
         <div class="categories-grid">
-            <a href="sports/" class="category-card">
-                <div class="border-accent" style="background: #2e7d32;"></div>
+            
+            <a href="sports/" class="category-card" style="border-color: #2e7d32">
                 <div class="category-icon">🏈</div>
                 <h2 class="category-title">Sports Betting</h2>
-                <p class="category-count">Latest updates</p>
+                <p class="category-count">4 articles</p>
             </a>
             
-            <a href="gambling/" class="category-card">
-                <div class="border-accent" style="background: #c62828;"></div>
+            <a href="gambling/" class="category-card" style="border-color: #c62828">
                 <div class="category-icon">🎰</div>
                 <h2 class="category-title">Gambling</h2>
-                <p class="category-count">Industry insights</p>
+                <p class="category-count">2 articles</p>
             </a>
             
-            <a href="crypto/" class="category-card">
-                <div class="border-accent" style="background: #f7931a;"></div>
+            <a href="crypto/" class="category-card" style="border-color: #f7931a">
                 <div class="category-icon">🪙</div>
                 <h2 class="category-title">Crypto Betting</h2>
-                <p class="category-count">Crypto trends</p>
+                <p class="category-count">2 articles</p>
             </a>
             
-            <a href="finance/" class="category-card">
-                <div class="border-accent" style="background: #1565c0;"></div>
+            <a href="finance/" class="category-card" style="border-color: #1565c0">
                 <div class="category-icon">💰</div>
                 <h2 class="category-title">Finance</h2>
-                <p class="category-count">Market analysis</p>
+                <p class="category-count">2 articles</p>
             </a>
+            
         </div>
     </div>
-
-    <script>
-        // Create animated stars
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                star.style.opacity = Math.random() * 0.5 + 0.3;
-                starsContainer.appendChild(star);
-            }
-        }
-        createStars();
-    </script>
 </body>
 </html>
