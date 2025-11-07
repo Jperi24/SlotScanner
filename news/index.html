@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - SlotEdge.bet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+        h1 {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .category-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 6px solid;
+        }
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .category-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+        .category-title {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        .category-count {
+            color: #666;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📰 News</h1>
+            <p class="subtitle">AI-Generated Betting Industry Analysis</p>
+        </header>
+        
+        <div class="categories-grid">
+            
+            <a href="sports/" class="category-card" style="border-color: #2e7d32">
+                <div class="category-icon">🏈</div>
+                <h2 class="category-title">Sports Betting</h2>
+                <p class="category-count">2 articles</p>
+            </a>
+            
+            <a href="gambling/" class="category-card" style="border-color: #c62828">
+                <div class="category-icon">🎰</div>
+                <h2 class="category-title">Gambling</h2>
+                <p class="category-count">1 article</p>
+            </a>
+            
+            <a href="crypto/" class="category-card" style="border-color: #f7931a">
+                <div class="category-icon">🪙</div>
+                <h2 class="category-title">Crypto Betting</h2>
+                <p class="category-count">1 article</p>
+            </a>
+            
+            <a href="finance/" class="category-card" style="border-color: #1565c0">
+                <div class="category-icon">💰</div>
+                <h2 class="category-title">Finance</h2>
+                <p class="category-count">1 article</p>
+            </a>
+            
+        </div>
+    </div>
+</body>
+</html>
