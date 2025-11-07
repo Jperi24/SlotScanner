@@ -1,97 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gambling - Generated Betting News Article</title>
+    <title>Gambling News - SlotEdge.bet</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎰</text></svg>">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0e27;
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            padding-top: 70px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 107, 107, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
-            line-height: 1.7;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+            position: relative;
+            z-index: 1;
         }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 12px 24px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
         .article {
-            background: white;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
             padding: 50px;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .category-badge {
             display: inline-block;
-            background: #c62828;
+            background: linear-gradient(135deg, #c62828 0%, #ff6b6b 100%);
             color: white;
-            padding: 8px 20px;
+            padding: 10px 24px;
             border-radius: 25px;
             font-size: 0.85em;
             font-weight: 700;
             margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
+
         .metadata {
-            color: #999;
-            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9em;
             margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .content {
             font-size: 1.1em;
             line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
         }
-        .content h1, .content h2, .content h3 {
+
+        .content h1 {
+            font-size: 2.5em;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content h2, .content h3 {
             margin-top: 30px;
             margin-bottom: 15px;
-            color: #222;
+            color: #ffd700;
             font-weight: 700;
         }
-        .content h1 {
-            font-size: 2.2em;
-            line-height: 1.2;
-            margin-top: 0;
-            margin-bottom: 25px;
-        }
+
         .content p {
             margin-bottom: 20px;
         }
+
         .content strong {
-            color: #c62828;
+            color: #ffd700;
             font-weight: 600;
         }
+
         .source {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: rgba(255, 215, 0, 0.1);
             padding: 25px;
             margin-top: 40px;
-            border-radius: 10px;
-            border-left: 4px solid #c62828;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
         }
+
         .source strong {
-            color: #444;
+            color: #ffd700;
             font-size: 0.9em;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
+
         .source a {
-            color: #c62828;
+            color: #ffd700;
             text-decoration: none;
             font-weight: 600;
             transition: opacity 0.2s;
         }
+
         .source a:hover {
             opacity: 0.7;
         }
+
+        /* Navigation Bar Styles */
+        nav a:hover {
+            color: #ffd700 !important;
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 20px 15px;
+                padding-top: 120px;
             }
             .article {
                 padding: 30px 20px;
@@ -100,28 +174,84 @@
                 font-size: 1em;
             }
             .content h1 {
-                font-size: 1.6em;
+                font-size: 1.8em;
+            }
+            nav > div {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav > div > div {
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="article">
-        <span class="category-badge">Gambling</span>
-        
-        <div class="metadata">
-            <strong>Generated:</strong> 2025-11-06T21:43:42.312128<br>
-            <strong>Tokens Used:</strong> 1151
+    <!-- Navigation Bar -->
+    <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 14, 39, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 215, 0, 0.2); padding: 15px 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;">
+            <a href="../../index.html" style="font-size: 1.5rem; font-weight: 900; text-decoration: none; color: #ffd700;">
+                🎰 Slotedge
+            </a>
+            <div style="display: flex; gap: 30px; align-items: center;">
+                <a href="../../index.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; transition: all 0.3s;">Home</a>
+                <a href="../../free-slots-demo.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; transition: all 0.3s; display: flex; align-items: center; gap: 8px;">
+                    🎮 Free Slots Demo
+                </a>
+                <a href="../../blog.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; transition: all 0.3s;">
+                    📚 Blog
+                </a>
+                <a href="../index.html" style="color: #ffd700; text-decoration: none; font-weight: 600; transition: all 0.3s;">
+                    📰 News
+                </a>
+            </div>
         </div>
+    </nav>
+    
+    <div class="container">
+        <a href="./" class="back-link">← Back to Gambling News</a>
         
-        <div class="content">
-            Headline: "Steiner's F1 'Mount Rushmore' Snub: Who Got the Cold Shoulder?"<br><br><br><br>Body: <br><br><br><br>Picture this: You walk into your favorite watering hole, the one with the dim lights and the barkeep who knows your poison before you've even shrugged off your coat. You're all set for a night of Formula 1 debates when suddenly, your motormouth friend slaps a newspaper on the counter: "Did you hear about Steiner's F1 'Mount Rushmore' snub?"<br><br><br><br>If you're a self-respecting F1 fan, and I know you are, you're probably already listening with the intensity of Lewis Hamilton on a final lap. Who, pray tell, did Guenther Steiner, the man who's seen more pit stops than a New York cabbie, leave off his racing royalty lineup?<br><br><br><br>Before we dive into it, let's remember who Guenther Steiner is. This is a guy who's been around the F1 block. He's been in the driver's seat, the pit, and the office. He's like the jelly-filled donut of F1 - on the surface, simple and straightforward, but once you bite into him, there's a whole lot of sweet, complex gooeyness to savor.<br><br><br><br>So, who did he leave off? I'm talking about the two names that have been more intertwined with F1 than the smell of rubber on a race day - none other than Bernie Ecclestone and Max Mosley. It's like drawing up a 'Mount Rushmore' of Basketball and leaving off Michael Jordan and Lebron James. Defying the norms is one thing, but this is akin to blasting past the chequered flag like it's just another billboard.<br><br><br><br>But let's not jump to conclusions faster than a Ferrari on a straightaway. What does it really mean for this dynamic duo to be left in Steiner's rearview mirror? <br><br><br><br>Let's dissect this like a high school biology frog. Ecclestone, the man who was synonymous with F1 for four decades, took the sport from being a dangerous passion project of the wealthy to a global phenomenon. Mosley, on the other hand, was the man who made sure F1 wasn't just about the fastest car but the smartest strategy. <br><br><br><br>Denying them a place on the monument is not only a snub to them but an affront to their combined contributions. It's like saying, "Thanks for the memories, now take your helmet and scoot." <br><br><br><br>But what does this mean for you, my dear punters? For the uninitiated, this might seem like just another F1 spat. But for those who live and breathe the burning rubber, this could signal a shift in the way the sport and its history are viewed. <br><br><br><br>If key figures can be so casually excluded from what is essentially an homage to F1's legacy, what does this mean for future bets on who makes the cut for such acknowledgments? Will history be glossed over and replaced by the latest shiny thing, or will there always be a place for true contributors, like Ecclestone and Mosley, in F1?<br><br><br><br>As the Brazilian Grand Prix looms on the horizon like a rainy day, let's remember that unpredictability is part of the thrill of the game. And this snub? It's as unpredictable as a sudden downpour during the Grand Prix that sends all strategies haywire.<br><br><br><br>And as we sit at this bar, our drinks at our elbows, let's raise our glasses to the greatest enigma that is Formula 1. For in this sport, nothing is ever as simple as it seems, least of all the legacy that some leave behind.<br><br><br><br>So, as we ponder Steiner's snub and what it could mean for the future of F1, remember this: in the world of Formula 1, exclusion is just as significant as inclusion. Intriguing, isn't it?
-        </div>
-        
-        <div class="source">
-            <strong>📰 Source Article</strong><br><br>
-            EXCLUSIVE: Guenther Steiner leaves two major names out of his F1 ‘Mount Rushmore’<br><br>
-            <a href="https://www.casino.org/blog/exclusive-guenther-steiner-f1-mount-rushmore/" target="_blank">→ View Original Source</a>
+        <div class="article">
+            <span class="category-badge">🎰 Gambling</span>
+            
+            <div class="metadata">
+                <strong>Published:</strong> November 06, 2025 at 09:43 PM<br>
+                <strong>Category:</strong> Gambling Industry
+            </div>
+            
+            <div class="content">
+                <h1>Steiner's F1 'Mount Rushmore' Snub: Who Got the Cold Shoulder?</h1>
+                
+                <p>Picture this: You walk into your favorite watering hole, the one with the dim lights and the barkeep who knows your poison before you've even shrugged off your coat. You're all set for a night of Formula 1 debates when suddenly, your motormouth friend slaps a newspaper on the counter: "Did you hear about Steiner's F1 'Mount Rushmore' snub?"</p>
+                
+                <p>If you're a self-respecting F1 fan, and I know you are, you're probably already listening with the intensity of Lewis Hamilton on a final lap. Who, pray tell, did <strong>Guenther Steiner</strong>, the man who's seen more pit stops than a New York cabbie, leave off his racing royalty lineup?</p>
+                
+                <p>Before we dive into it, let's remember who Guenther Steiner is. This is a guy who's been around the F1 block. He's been in the driver's seat, the pit, and the office. He's like the jelly-filled donut of F1 - on the surface, simple and straightforward, but once you bite into him, there's a whole lot of sweet, complex gooeyness to savor.</p>
+                
+                <p>So, who did he leave off? I'm talking about the two names that have been more intertwined with F1 than the smell of rubber on a race day - none other than <strong>Bernie Ecclestone</strong> and <strong>Max Mosley</strong>. It's like drawing up a 'Mount Rushmore' of Basketball and leaving off Michael Jordan and Lebron James. Defying the norms is one thing, but this is akin to blasting past the chequered flag like it's just another billboard.</p>
+                
+                <p>But let's not jump to conclusions faster than a Ferrari on a straightaway. What does it really mean for this dynamic duo to be left in Steiner's rearview mirror?</p>
+                
+                <p>Let's dissect this like a high school biology frog. <strong>Ecclestone</strong>, the man who was synonymous with F1 for four decades, took the sport from being a dangerous passion project of the wealthy to a global phenomenon. <strong>Mosley</strong>, on the other hand, was the man who made sure F1 wasn't just about the fastest car but the smartest strategy.</p>
+                
+                <p>Denying them a place on the monument is not only a snub to them but an affront to their combined contributions. It's like saying, "Thanks for the memories, now take your helmet and scoot."</p>
+                
+                <p>But what does this mean for you, my dear punters? For the uninitiated, this might seem like just another F1 spat. But for those who live and breathe the burning rubber, this could signal a shift in the way the sport and its history are viewed.</p>
+                
+                <p>If key figures can be so casually excluded from what is essentially an homage to F1's legacy, what does this mean for future bets on who makes the cut for such acknowledgments? Will history be glossed over and replaced by the latest shiny thing, or will there always be a place for true contributors, like Ecclestone and Mosley, in F1?</p>
+                
+                <p>As the Brazilian Grand Prix looms on the horizon like a rainy day, let's remember that unpredictability is part of the thrill of the game. And this snub? It's as unpredictable as a sudden downpour during the Grand Prix that sends all strategies haywire.</p>
+                
+                <p>And as we sit at this bar, our drinks at our elbows, let's raise our glasses to the greatest enigma that is Formula 1. For in this sport, nothing is ever as simple as it seems, least of all the legacy that some leave behind.</p>
+                
+                <p>So, as we ponder Steiner's snub and what it could mean for the future of F1, remember this: in the world of Formula 1, exclusion is just as significant as inclusion. Intriguing, isn't it?</p>
+            </div>
+            
+            <div class="source">
+                <strong>📰 Source Article</strong><br><br>
+                EXCLUSIVE: Guenther Steiner leaves two major names out of his F1 'Mount Rushmore'<br><br>
+                <a href="https://www.casino.org/blog/exclusive-guenther-steiner-f1-mount-rushmore/" target="_blank">→ View Original Source</a>
+            </div>
         </div>
     </div>
 </body>
