@@ -4,96 +4,269 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance News - SlotEdge.bet</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎰</text></svg>">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1565c022 0%, #1565c044 100%);
-            padding: 40px 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0e27;
             min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            padding-top: 70px;
         }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 107, 107, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
         }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 12px 24px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
         header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
-        .back-link {
+
+        .category-badge {
             display: inline-block;
+            background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-size: 0.85em;
+            font-weight: 700;
             margin-bottom: 20px;
-            color: #1565c0;
-            text-decoration: none;
-            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
+
         h1 {
             font-size: 3em;
-            color: #1565c0;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
         .subtitle {
-            color: #666;
+            color: rgba(255, 255, 255, 0.6);
             font-size: 1.2em;
         }
+
         .articles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
         }
+
         .article-card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-left: 4px solid #1565c0;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
         }
-        .article-date {
-            color: #999;
-            font-size: 0.9em;
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .article-meta {
             margin-bottom: 15px;
         }
-        .article-link {
-            display: inline-block;
-            color: #1565c0;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
+
+        .article-date {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9em;
+        }
+
+        .article-title {
+            color: #ffd700;
+            font-size: 1.3em;
+            font-weight: 700;
             transition: opacity 0.2s;
         }
-        .article-link:hover {
-            opacity: 0.7;
+
+        .article-card:hover .article-title {
+            opacity: 0.8;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 15px 0;
+        }
+
+        nav .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-decoration: none;
+            color: #ffd700;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        nav a.active {
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 120px;
+            }
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            nav .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav .nav-links {
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="../../index.html" class="logo">🎰 Slotedge</a>
+            <div class="nav-links">
+                <a href="../../index.html">Home</a>
+                <a href="../../free-slots-demo.html">🎮 Free Slots Demo</a>
+                <a href="../../blog.html">📚 Blog</a>
+                <a href="../index.html" class="active">📰 News</a>
+            </div>
+        </div>
+    </nav>
+    
     <div class="container">
+        <a href="../index.html" class="back-link">← Back to All News</a>
+        
         <header>
-            <a href="../" class="back-link">← Back to All News</a>
-            <h1>💰 Finance News</h1>
-            <p class="subtitle">3 articles</p>
+            <span class="category-badge">💰 Finance News</span>
+            <h1>4 Articles</h1>
+            <p class="subtitle">Latest finance news and analysis</p>
         </header>
         
         <div class="articles-grid">
             
-            <div class="article-card">
-                <div class="article-date">November 07, 2025 at 10:08 AM</div>
-                <a href="article_finance_20251107_100836.html" class="article-link">View Article →</a>
-            </div>
+            <a href="article_finance_20251107_104323.html" class="article-card">
+                <div class="article-meta">
+                    <span class="article-date">November 07, 2025 at 10:43 AM</span>
+                </div>
+                <div class="article-title">Read Article →</div>
+            </a>
             
-            <div class="article-card">
-                <div class="article-date">November 06, 2025 at 10:32 PM</div>
-                <a href="article_finance_20251106_223209.html" class="article-link">View Article →</a>
-            </div>
+            <a href="article_finance_20251107_100836.html" class="article-card">
+                <div class="article-meta">
+                    <span class="article-date">November 07, 2025 at 10:08 AM</span>
+                </div>
+                <div class="article-title">Read Article →</div>
+            </a>
             
-            <div class="article-card">
-                <div class="article-date">November 06, 2025 at 09:43 PM</div>
-                <a href="article_finance_20251106_214314.html" class="article-link">View Article →</a>
-            </div>
+            <a href="article_finance_20251106_223209.html" class="article-card">
+                <div class="article-meta">
+                    <span class="article-date">November 06, 2025 at 10:32 PM</span>
+                </div>
+                <div class="article-title">Read Article →</div>
+            </a>
+            
+            <a href="article_finance_20251106_214314.html" class="article-card">
+                <div class="article-meta">
+                    <span class="article-date">November 06, 2025 at 09:43 PM</span>
+                </div>
+                <div class="article-title">Read Article →</div>
+            </a>
             
         </div>
     </div>

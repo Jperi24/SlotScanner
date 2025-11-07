@@ -4,71 +4,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News - SlotEdge.bet</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎰</text></svg>">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 60px 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0e27;
             min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            padding-top: 70px;
         }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 107, 107, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 1;
         }
+
         header {
             text-align: center;
-            color: white;
             margin-bottom: 60px;
         }
+
         h1 {
             font-size: 4em;
             margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
         .subtitle {
             font-size: 1.3em;
-            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.7);
         }
+
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
+
         .category-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            padding: 50px 30px;
+            border-radius: 20px;
             text-align: center;
             text-decoration: none;
-            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-left: 6px solid;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+            border-color: rgba(255, 215, 0, 0.5);
         }
+
         .category-icon {
             font-size: 4em;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
         }
+
         .category-title {
             font-size: 1.8em;
             margin-bottom: 10px;
-            color: #222;
+            color: #ffd700;
+            font-weight: 700;
         }
+
         .category-count {
-            color: #666;
+            color: rgba(255, 255, 255, 0.6);
             font-size: 1.1em;
+        }
+
+        .category-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .category-card:hover .category-gradient {
+            opacity: 1;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 15px 0;
+        }
+
+        nav .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-decoration: none;
+            color: #ffd700;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        nav a.active {
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 120px;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            nav .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav .nav-links {
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">🎰 Slotedge</a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../free-slots-demo.html">🎮 Free Slots Demo</a>
+                <a href="../blog.html">📚 Blog</a>
+                <a href="./index.html" class="active">📰 News</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <header>
             <h1>📰 News</h1>
@@ -77,28 +232,32 @@
         
         <div class="categories-grid">
             
-            <a href="sports/" class="category-card" style="border-color: #2e7d32">
+            <a href="sports/" class="category-card">
                 <div class="category-icon">🏈</div>
                 <h2 class="category-title">Sports Betting</h2>
-                <p class="category-count">6 articles</p>
+                <p class="category-count">8 articles</p>
+                <div class="category-gradient" style="background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 100%);"></div>
             </a>
             
-            <a href="gambling/" class="category-card" style="border-color: #c62828">
+            <a href="gambling/" class="category-card">
                 <div class="category-icon">🎰</div>
                 <h2 class="category-title">Gambling</h2>
                 <p class="category-count">4 articles</p>
+                <div class="category-gradient" style="background: linear-gradient(135deg, #c62828 0%, #ff6b6b 100%);"></div>
             </a>
             
-            <a href="crypto/" class="category-card" style="border-color: #f7931a">
+            <a href="crypto/" class="category-card">
                 <div class="category-icon">🪙</div>
                 <h2 class="category-title">Crypto Betting</h2>
-                <p class="category-count">3 articles</p>
+                <p class="category-count">4 articles</p>
+                <div class="category-gradient" style="background: linear-gradient(135deg, #f7931a 0%, #ff8e53 100%);"></div>
             </a>
             
-            <a href="finance/" class="category-card" style="border-color: #1565c0">
+            <a href="finance/" class="category-card">
                 <div class="category-icon">💰</div>
                 <h2 class="category-title">Finance</h2>
-                <p class="category-count">3 articles</p>
+                <p class="category-count">4 articles</p>
+                <div class="category-gradient" style="background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);"></div>
             </a>
             
         </div>
